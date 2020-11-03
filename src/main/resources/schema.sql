@@ -1,0 +1,2 @@
+create table if not exists CountTimeWorldRecord (id int,deviceNumber int,createdAt date, name varchar(100),timeDifference double);
+create table if not exists JustGetMiddleWorldRecord (id int,deviceNumber int,createdAt date, name varchar(100),difference double);
