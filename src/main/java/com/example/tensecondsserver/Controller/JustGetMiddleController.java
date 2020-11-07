@@ -5,10 +5,7 @@ import com.example.tensecondsserver.DTO.ResponseMessageCountTime;
 import com.example.tensecondsserver.DTO.ResponseMessageJustGetMiddle;
 import com.example.tensecondsserver.Service.JustGetMiddleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,9 @@ public class JustGetMiddleController {
     @RequestMapping(value="/list", method= RequestMethod.GET)
     public List<ResponseMessageJustGetMiddle> getList(){
         return justGetMiddleService.all();
+    }
+    @RequestMapping(value="/keys",method= RequestMethod.GET)
+    public String getKeyword(@RequestParam String key){
+        return justGetMiddleService.findByKeyword(key);
     }
 }

@@ -1,2 +1,3 @@
 create table if not exists counttimerecords.CountTimeWorldRecord (id int auto_increment,device_number varchar(100),created_at timestamp, name varchar(100),time_difference double,PRIMARY KEY (id));
 create table if not exists counttimerecords.JustGetMiddleWorldRecord (id int auto_increment,device_number varchar(100),created_at timestamp, name varchar(100),difference double,PRIMARY KEY (id));
+create table if not exists counttimerecords.UserRecord(id int auto_increment,username varchar(100),password varchar(100),PRIMARY KEY (id));

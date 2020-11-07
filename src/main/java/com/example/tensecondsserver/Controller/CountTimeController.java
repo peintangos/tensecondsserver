@@ -5,10 +5,7 @@ import com.example.tensecondsserver.DTO.ResponseMessageCountTime;
 import com.example.tensecondsserver.Service.CountTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.HttpRequestHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpRequest;
 import java.util.List;
@@ -27,5 +24,9 @@ public class CountTimeController {
     @RequestMapping(value="/list", method= RequestMethod.GET)
     public List<ResponseMessageCountTime> getList(){
         return countTimeService.all();
+    }
+    @RequestMapping(value="/keys", method= RequestMethod.GET)
+    public String getListByKeyWord(@RequestParam String key){
+        return countTimeService.getByKeyword(key);
     }
 }
