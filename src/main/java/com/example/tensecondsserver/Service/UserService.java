@@ -11,9 +11,16 @@ public class UserService {
     @Autowired
     private UserRecordRepository userRecordRepository;
     public void save(RequestMessageUser requestMessageUser){
+        if (validate(changeDao(requestMessageUser))){
+         throw new IllegalArgumentException("異なるユーザーを入力して下さい");
+        }
         userRecordRepository.save(changeDao(requestMessageUser));
     }
     public UserRecord changeDao(RequestMessageUser requestMessageUser){
         return UserRecord.of(requestMessageUser);
+    }
+    public boolean validate(UserRecord userRecord){
+        return userRecordRepository.findByUsername(userRecord.getUsername()).isPresent();
+
     }
 }

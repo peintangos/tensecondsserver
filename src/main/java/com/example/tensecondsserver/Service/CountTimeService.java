@@ -43,7 +43,7 @@ public class CountTimeService {
                 .collect(Collectors.toList());
         CountTimeWorldRecord countTimeWorldRecord = countTimeWorldRecordRepository.findByName(keyword)
                 .orElseThrow(IllegalArgumentException::new)
-                .stream().sorted(Comparator.comparing(CountTimeWorldRecord::getTimeDifference)).findFirst().get();
+                .stream().sorted(Comparator.comparing(CountTimeWorldRecord::getTimeDifference)).findFirst().orElseThrow(() -> new NoKeyWordException("レコードがありません"));
         int index = listDao.indexOf(countTimeWorldRecord);
         if (index == -1){
             return "ランキング外です";

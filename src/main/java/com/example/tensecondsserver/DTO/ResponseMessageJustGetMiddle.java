@@ -23,6 +23,11 @@ public class ResponseMessageJustGetMiddle implements Serializable {
         this.name = name;
         this.difference = difference;
     }
+
+    public int getId() {
+        return id;
+    }
+
     public static ResponseMessageJustGetMiddle of(JustGetMiddleWorldRecord justGetMiddleWorldRecord){
         return new ResponseMessageJustGetMiddle(justGetMiddleWorldRecord.getId(),justGetMiddleWorldRecord.getDeviceNumber(),justGetMiddleWorldRecord.getCreatedAt(),justGetMiddleWorldRecord.getName(),justGetMiddleWorldRecord.getTimeDifference());
     }
