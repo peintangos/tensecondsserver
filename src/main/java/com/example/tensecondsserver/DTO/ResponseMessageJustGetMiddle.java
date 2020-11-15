@@ -28,6 +28,10 @@ public class ResponseMessageJustGetMiddle implements Serializable {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static ResponseMessageJustGetMiddle of(JustGetMiddleWorldRecord justGetMiddleWorldRecord){
         return new ResponseMessageJustGetMiddle(justGetMiddleWorldRecord.getId(),justGetMiddleWorldRecord.getDeviceNumber(),justGetMiddleWorldRecord.getCreatedAt(),justGetMiddleWorldRecord.getName(),justGetMiddleWorldRecord.getTimeDifference());
     }

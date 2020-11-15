@@ -29,10 +29,8 @@ public class JustGetMiddleController {
     public ResponseMessageJustGetMiddleLabel getListLabel(){
         return justGetMiddleService.listByLebel();
     }
-    @RequestMapping(value="/listLabel/rank", method= RequestMethod.GET)
-    public int getListLabel(@RequestParam String key){
-        System.out.print(justGetMiddleService.getRank(justGetMiddleService.getMap(), justGetMiddleService.findByKeywordInt(key)));
-
+    @RequestMapping(value="/rank", method= RequestMethod.GET)
+    public String getListLabelRank(@RequestParam String key){
         return justGetMiddleService.getRank(justGetMiddleService.getMap(), justGetMiddleService.findByKeywordInt(key));
     }
     @RequestMapping(value="/keys",method= RequestMethod.GET)

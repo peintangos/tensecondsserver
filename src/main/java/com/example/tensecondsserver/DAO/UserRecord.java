@@ -19,16 +19,22 @@ public class UserRecord {
     private int id;
     private String username;
     private String password;
-    public UserRecord(String username,String password){
+    private String uuid;
+    public UserRecord(String username,String password,String uuid){
         this.username = username;
         this.password = password;
+        this.uuid = uuid;
     }
 
     public String getUsername() {
         return username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public static UserRecord of(RequestMessageUser requestMessageUser){
-        return new UserRecord(requestMessageUser.getUsername(),requestMessageUser.getPassword());
+        return new UserRecord(requestMessageUser.getUsername(),requestMessageUser.getPassword(), requestMessageUser.getUuid());
     }
 }

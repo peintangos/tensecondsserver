@@ -2,6 +2,7 @@ package com.example.tensecondsserver.Controller;
 
 import com.example.tensecondsserver.DTO.RequestMessageCountTime;
 import com.example.tensecondsserver.DTO.ResponseMessageCountTime;
+import com.example.tensecondsserver.DTO.ResponseMessageCountTimeLabel;
 import com.example.tensecondsserver.Service.CountTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.HttpRequestHandler;
@@ -28,5 +29,13 @@ public class CountTimeController {
     @RequestMapping(value="/keys", method= RequestMethod.GET)
     public String getListByKeyWord(@RequestParam String key){
         return countTimeService.getByKeyword(key);
+    }
+    @RequestMapping(value="/listLabel",method = RequestMethod.GET)
+    public ResponseMessageCountTimeLabel getLabel(){
+        return countTimeService.listByLabel();
+    }
+    @RequestMapping(value="/rank",method = RequestMethod.GET)
+    public String getRanking(@RequestParam String key){
+        return countTimeService.getRank(countTimeService.getMap(),key);
     }
 }

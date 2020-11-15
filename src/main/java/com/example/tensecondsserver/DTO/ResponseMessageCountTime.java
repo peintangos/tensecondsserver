@@ -2,10 +2,14 @@ package com.example.tensecondsserver.DTO;
 
 import com.example.tensecondsserver.DAO.CountTimeWorldRecord;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
 @Data
+@Getter
+@Setter
 public class ResponseMessageCountTime implements Serializable {
     private int id;
     private String deviceNumber;
@@ -21,5 +25,9 @@ public class ResponseMessageCountTime implements Serializable {
     }
     public static ResponseMessageCountTime of(CountTimeWorldRecord countTimeWorldRecord){
         return new ResponseMessageCountTime(countTimeWorldRecord.getId(),countTimeWorldRecord.getDeviceNumber(),countTimeWorldRecord.getCreatedAt(),countTimeWorldRecord.getName(),countTimeWorldRecord.getTimeDifference());
+    }
+
+    public String getName() {
+        return name;
     }
 }

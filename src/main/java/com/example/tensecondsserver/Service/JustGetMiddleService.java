@@ -50,7 +50,7 @@ public class JustGetMiddleService {
         JustGetMiddleWorldRecord justGetMiddleWorldRecord = justGetMiddleWorldRecordRepository.findByName(key)
                 .stream()
                 .sorted(Comparator.comparing(JustGetMiddleWorldRecord::getTimeDifference))
-                .findFirst().orElseThrow(IllegalArgumentException::new);
+                .findFirst().orElseThrow(() ->new NoKeyWordException("レコードがありません"));
         int index = list.indexOf(justGetMiddleWorldRecord);
         if (index == -1){
             return "ランキング外";
@@ -86,25 +86,25 @@ public class JustGetMiddleService {
         );
         all().stream().forEach(responseMessageJustGetMiddle ->{
 //            スコアに対し、割合を設定している。
-                    double changedIdForCalu = (double)responseMessageJustGetMiddle.getId();
-                    double score = changedIdForCalu / allCount();
-                    setValue(map,score,responseMessageJustGetMiddle);
-                }
+//          冷静にこれダメじゃね。順位を出さないと。
+//          double changedIdForCalu = (double)responseMessageJustGetMiddle.getId();
+            double changedIdForCalu = findByKeywordInt(responseMessageJustGetMiddle.getName());
+            double score = changedIdForCalu / allCount();
+            setValue(map,score,responseMessageJustGetMiddle);
+        }
         );
-        System.out.print(map);
         return map;
     }
 //    Mapと数字を引数にとり、ランクを返す
-    public int getRank(Map<Integer,List<ResponseMessageJustGetMiddle>> map,int index){
+    public String getRank(Map<Integer,List<ResponseMessageJustGetMiddle>> map,int index){
         int amount = 0;
         for (int i=0; i<map.values().size();i++){
             amount += map.get(i).size();
             if (index <= amount){
-                System.out.println(index);
-                return index;
+                return String.valueOf(i);
             }
         }
-        return 19;
+        return String.valueOf(19);
     }
     public void setValue(Map<Integer,List<ResponseMessageJustGetMiddle>> map, double score,ResponseMessageJustGetMiddle responseMessageJustGetMiddle){
         if(hantei(score,0,0.2)){
@@ -189,8 +189,9 @@ public class JustGetMiddleService {
         }
 
     }
+//    符号の関係上、ランクが一番上の人は存在しないことになる
     public boolean hantei(double score, double min,double max){
-        return score > min && score <= max;
+        return score >= min && score < max;
     }
 
 }
