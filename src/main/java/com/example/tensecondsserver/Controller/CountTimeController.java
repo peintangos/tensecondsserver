@@ -23,8 +23,8 @@ public class CountTimeController {
         return "Hello World";
     }
     @RequestMapping(value="/list", method= RequestMethod.GET)
-    public List<ResponseMessageCountTime> getList(){
-        return countTimeService.all();
+    public List<ResponseMessageCountTime> getList(@RequestParam int page){
+        return countTimeService.allByCount(countTimeService.all(),page);
     }
     @RequestMapping(value="/keys", method= RequestMethod.GET)
     public String getListByKeyWord(@RequestParam String key){

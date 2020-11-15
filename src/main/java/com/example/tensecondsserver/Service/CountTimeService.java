@@ -30,6 +30,9 @@ public class CountTimeService {
                 .collect(Collectors.toList());
         return changeToDto(listDao);
     }
+    public List<ResponseMessageCountTime> allByCount(List<ResponseMessageCountTime>responseMessageCountTimes,int page){
+        return responseMessageCountTimes.stream().limit(page).collect(Collectors.toList());
+    }
     public List<ResponseMessageCountTime> changeToDto(List<CountTimeWorldRecord> list ){
         List<ResponseMessageCountTime> responseMessageCountTimes = new ArrayList<>();
         list.stream().forEach(e -> responseMessageCountTimes.add(ResponseMessageCountTime.of(e)));
